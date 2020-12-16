@@ -1,13 +1,50 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
+const pgtools = require('pgtools');
 
-const db = require('./config/database');
+const config = {
+  user: 'melissalynch',
+  host: 'localhost',
+  port: 5432,
+  password: 'mlynch'
+};
 
-//test DB
-db.authenticate()
-    .then(() => console.log('Database connected ...'))
-    .catch((err) => console.log('Error: ' + err))
+const dbName = require('./config/dbName');
+
+//attempt to create DB
+//if it already exists, this does nothing and just connects to
+//the existing db of that name
+async function createDB() {
+    try {
+        let res = await pgtools.createdb(config, dbName); //returns a promise
+        console.log(res);
+        console.log(`Successfully created the database: ${dbName}!`);
+      } catch (err) {
+        if (err.name === 'duplicate_database') {
+            console.log(`Database ${dbName} already exists`);
+            return;
+          } else {
+            console.error(err);
+            process.exit(1);
+          }
+      }
+}
+
+async function testDB(db) {
+    try {
+        await db.authenticate(); //returns a promise
+        console.log('Connection has been established successfully.');
+      } catch (error) {
+        console.error('Unable to connect to the database:', error);
+      }
+}
+
+async function bootApp() {
+    await createDB();
+    const db = require('./config/database'); //new Sequelize
+    await testDB(db);
+}
+
+bootApp();
 
 const app = express();
 
