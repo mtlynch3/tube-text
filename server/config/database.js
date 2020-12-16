@@ -1,6 +1,9 @@
 const Sequelize = require('sequelize');
+const dbName = require('./dbName');
 
-module.exports = new Sequelize('tubetext', 'melissalynch', 'mlynch', {
+const db = new Sequelize(dbName, 'melissalynch', 'mlynch', {
   host: 'localhost',
   dialect: 'postgres'
 });
+
+module.exports = db;
