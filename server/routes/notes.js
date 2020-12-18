@@ -3,17 +3,16 @@ const express = require('express');
 const router = express.Router();
 const Note = require('../models/Note')
 
-router.get('/', getAllNotes);
-
+//get all notes
 //  SELECT * from notes;
-async function getAllNotes(req, res) {
+router.get('/', async (req, res, next) => {
     try {
         let notes = await Note.findAll();
-        console.log(notes);
-        res.sendStatus(200);
+        res.status(200).json(notes);
     } catch(err) {
-        console.error(err);
+        next(err); //error sent to error-handling middleware
     } 
-};
+});
+
 
 module.exports = router;

@@ -6,12 +6,17 @@ const usersRouter = require('./users');
 const studySessionsRouter = require('./studysessions');
 const noteRouter = require('./notes');
 
+// Mount subrouters for api router
 router.use('/users', usersRouter);
 router.use('/studysessions', studySessionsRouter);
 router.use('/notes', noteRouter);
 
-
-
-
-// Export our apiRouter, so that it can be used by our main app in app.js;
+// Error-handling middleware
+router.use((req, res, next) => {
+    const error = new Error("Not Found, Please Check URL!");
+    error.status = 404;
+    next(error);
+  });
+  
+// Export api router for use in main app (app.js)
 module.exports = router;
