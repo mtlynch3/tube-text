@@ -1,6 +1,8 @@
 const express = require('express');
 const pgtools = require('pgtools');
 
+const seedDB = require('./config/seedDB');
+
 const config = {
   user: 'melissalynch',
   host: 'localhost',
@@ -29,29 +31,29 @@ async function createDB() {
       }
 }
 
-async function testDB(db) {
-    try {
-        await db.authenticate(); //returns a promise
-        console.log('Connection has been established successfully.');
-      } catch (error) {
-        console.error('Unable to connect to the database:', error);
-      }
-}
-
 async function bootApp() {
     await createDB();
     const db = require('./config/database'); //new Sequelize
-    await testDB(db);
+    //sync and seed
+    try {
+      await db.sync({force: true});
+      await seedDB();
+      console.log('Successfully seeded database')
+    } catch (error) {
+      console.error('syncDB error:', error);
+    }
+
+    
 }
 
 bootApp();
 
 const app = express();
 
-app.get('/', (req, res) => res.send('INDEX'));
+const apiRouter = require('./routes/index');
 
-//Note route
-app.use('/notes', require('./routes/notes'));
+app.use('/api', apiRouter);
+
 
 const PORT = process.env.PORT || 5000;
 
