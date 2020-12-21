@@ -29,7 +29,7 @@ const configureApp = async () => {
   const apiRouter = require("./routes/index");
   app.use("/api", apiRouter);
 
-  // Error-handling middleware
+  // handle page not found
   app.use((req, res, next) => {
     const error = new Error("Not Found, Please Check URL!");
     error.status = 404;
