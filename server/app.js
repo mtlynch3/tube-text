@@ -1,12 +1,12 @@
 const express = require("express");
 
-const createDB = require('./config/createDB');
-const seedDB = require('./config/seedDB');
+const createDB = require('./configDB/createDB');
+const seedDB = require('./configDB/seedDB');
 
 
 const syncDatabase = async () => {
     await createDB();
-    const db = require('./config/database'); //new Sequelize
+    const db = require('./configDB/database'); //new Sequelize
     //sync and seed
     try {
       await db.sync({force: true});

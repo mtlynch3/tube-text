@@ -1,6 +1,6 @@
 //notes table
 const Sequelize = require('sequelize');
-const db = require('../config/database');
+const db = require('../configDB/database');
 
 const Note = db.define("note", {
 

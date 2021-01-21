@@ -1,6 +1,6 @@
 //study sessions table
 const Sequelize = require('sequelize');
-const db = require('../config/database');
+const db = require('../configDB/database');
 
 const StudySession = db.define("studySession", {
 
