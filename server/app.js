@@ -10,8 +10,9 @@ const syncDatabase = async () => {
     //sync and seed
     try {
       await db.sync({force: true});
+      console.log('------Synced to db--------')
       await seedDB();
-      console.log('Successfully seeded database')
+      console.log('--------Successfully seeded db--------');
     } catch (error) {
       console.error('syncDB error:', error);
     }  
