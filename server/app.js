@@ -13,8 +13,7 @@ const session = require('express-session');
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 //module dependencies
-const passport = require("passport");
-const flash = require('express-flash');
+const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
@@ -37,9 +36,8 @@ const configureApp = async (db) => {
   // handle request data
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
-  //allow flash messages from passport
+  //auth stuff
   app.use(cookieParser());
-  app.use(flash());
   app.use(cors());
 
   // auth - Express Session
