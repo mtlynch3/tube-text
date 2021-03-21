@@ -8,7 +8,7 @@ const seedDatabase = async () => {
 	});
 
 	const dummy_sess = await StudySession.create({
-			videoURL: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+			videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
 			name: "Session 1",
 			description: "Calculus 1"
 		});

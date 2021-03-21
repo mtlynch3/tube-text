@@ -10,7 +10,7 @@ const StudySession = db.define("studySession", {
 		autoIncrement: true
 	},
 
-	videoURL: {
+	videoUrl: {
 		type: Sequelize.STRING,
 		allowNull: false
 	},
