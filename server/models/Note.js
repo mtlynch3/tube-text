@@ -15,10 +15,6 @@ const Note = db.define("note", {
         allowNull: false
     },
 
-    title: {
-        type: Sequelize.TEXT
-    },
-
     content: {
         type: Sequelize.TEXT
     }
