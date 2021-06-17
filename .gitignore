@@ -1,2 +1,3 @@
 server/node_modules
-client-test
+client/node_modules
+client_test
