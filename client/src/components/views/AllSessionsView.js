@@ -32,6 +32,7 @@ const useStyles = makeStyles( () => ({
         minWidth: 200,
         width: '100%',
         textAlign: 'center',
+        backgroundColor:'#a3a3c2',
     },
     cardTitle: {
         fontSize: 20,
@@ -48,23 +49,30 @@ const useStyles = makeStyles( () => ({
             backgroundColor: '#cddc39'
         },
     },
+    paperStyle:{
+      minHeight: 900, 
+      maxHeight:900, 
+      minWidth: '100%', 
+      maxWidth: '100%', 
+      overflow: 'auto', 
+      backgroundColor: 'white', 
+      border: '1px solid white'
+    },
 }));
 
 const style = {
     textDecoration: 'none'
 };
 
-
-
 const AllSessionsView = props => {
   const { sessions, currentStudySession, deleteStudySession, handleLogout } = props;
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="static" className = {classes.customizeAppBar}>
+      <AppBar position="static" className={classes.customizeAppBar}>
         <Toolbar>
           <Link className={classes.title} to={'/study_sessions'}>
-            <Typography variant="h6" color = "inherit" style={{fontType: 'bold', fontFamily: 'Courier, sans-serif', fontSize: '35px', color: '#CDDC39'}}>
+            <Typography variant="h6" color="inherit" style={{fontType: 'bold', fontFamily: 'Courier, sans-serif', fontSize: '35px', color: '#CDDC39'}}>
             TubeText
             </Typography>
           </Link>
@@ -75,7 +83,7 @@ const AllSessionsView = props => {
         </Toolbar>
       </AppBar>
       <br/>
-      <Grid container direction="column" spacing={3} justify="center" alignItems="center" >
+      <Grid container direction="column" spacing={3} alignItems="center" >
         <Grid item>
           <Link style = { style } to={`/study_sessions/add_session`}>            
             <Button variant="contained" color="primary">
@@ -85,12 +93,12 @@ const AllSessionsView = props => {
         </Grid>
 
         <Grid item style={{minWidth: '70%'}}>
-          <Paper style={{minHeight: 900, maxHeight:900, minWidth: '100%', maxWidth: '100%', overflow: 'auto', backgroundColor: 'white', border: '1px solid white'}}>
+          <Paper className={classes.paperStyle}>
             <List className="List">
             {sessions.map( (session) => {
                 return (
-                <ListItem key={session.id} className = "study-session" onClick={() => currentStudySession(session)} alignItems='center'>
-                    <Card className={classes.card} style={{backgroundColor:'#a3a3c2'}}>
+                <ListItem key={session.id} onClick={() => currentStudySession(session)} alignItems='center'>
+                    <Card className={classes.card}>
                     <CardContent>
                         <Typography className={classes.cardTitle} color="textSecondary" gutterBottom>
                         {session.name}

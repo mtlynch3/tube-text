@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   },
   formStyle: {
     textAlign: 'center',
-    backgroundColor: 'pink',
+    backgroundColor: '#a3a3c2',
     width: "30%",
     margin: "30px auto 0", 
     

@@ -4,15 +4,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles(theme => ({
-  
     root: {
       flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
     },
     title: {
       flexGrow: 1,
@@ -22,29 +18,12 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#11153e',
         shadows: ['none'],
     },
-    customizeToolBar:{
-        // minHeight: 35,
-        // height: 35,
-    },
-    customNavButton:{
-        "&:hover": {
-            backgroundColor: '#d24d4d'
-        },
-        minHeight: 25,
-        height: 29,
-        minWidth: 70,
-        width: 70,
-        color: 'white',
-        fontSize: '11px',
-        borderRadius: 100,
-        textTransform: 'none',
-    },
     boxStyle:{
-        display: 'flex',
-        justifyContent: 'center',
-        backgroundColor: 'pink',
-        width: "50%",
-        margin: "auto",
+        backgroundColor: '#a3a3c2',
+        width: '75%',
+        margin: 'auto',
+        spacing: 3,
+        alignItems: 'center'
     },
 
   }));
@@ -81,7 +60,10 @@ const HomePageView = () => {
             </Toolbar>
             </AppBar>
         </div>
-        <Box className={classes.boxStyle}><h1>HELLO !!!!</h1></Box>
+        <Grid container direction="column" className={classes.boxStyle} >
+            <h1>TubeText</h1>
+            <h3>Take timestamped notes on any web video</h3>
+        </Grid>
          
     </div>
 
